@@ -9,7 +9,7 @@ class PurchaseOrder(models.Model):
         ('pending', 'Pending Receipt'),
         ('received', 'Received'),
         ('cancel', 'Receipt Cancelled'),
-    ], deafult='nothing', string="Delivery/Receipt Status")
+    ], default='nothing', string="Delivery/Receipt Status")
 
     # @api.depends('state')
     # def get_delivery_status(self):
