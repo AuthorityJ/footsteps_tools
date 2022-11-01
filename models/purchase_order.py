@@ -16,7 +16,13 @@ class PurchaseOrder(models.Model):
         for rec in self:
             if rec.state == 'purchase':
                 if rec.picking_ids:
-                    rec.delivery_status = 'nothing'
+                    for items in rec.picking_ids:
+                        if items.state != 'done':
+                            rec.delivery_status = 'pending'
+                        elif items.state == 'cancel':
+                            rec.delivery_status = 'cancel'
+                        else:
+                            rec.delivery_status = 'received'
                 else:
                     rec.delivery_status = ''
             else:
