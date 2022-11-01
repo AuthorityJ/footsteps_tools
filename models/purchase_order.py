@@ -16,6 +16,8 @@ class PurchaseOrder(models.Model):
         for rec in self:
             if rec.state == 'purchase':
                 rec.delivery_status = 'nothing'
+            else:
+                rec.delivery_status = ''
     #             if rec.picking_ids:
     #                 for items in rec.picking_ids:
     #                     if items.state != 'done':
