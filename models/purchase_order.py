@@ -17,6 +17,8 @@ class PurchaseOrder(models.Model):
             if rec.state == 'purchase':
                 if rec.picking_ids:
                     rec.delivery_status = 'nothing'
+                else:
+                    rec.delivery_status = ''
             else:
                 rec.delivery_status = ''
     #             if rec.picking_ids:
