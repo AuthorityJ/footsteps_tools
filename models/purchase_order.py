@@ -9,21 +9,21 @@ class PurchaseOrder(models.Model):
         ('pending', 'Pending Receipt'),
         ('received', 'Received'),
         ('cancel', 'Receipt Cancelled'),
-    ], deafult='nothing', string="Delivery/Receipt Status", compute='get_delivery_status')
+    ], deafult='nothing', string="Delivery/Receipt Status")
 
-    @api.depends('state')
-    def get_delivery_status(self):
-        for rec in self:
-            if rec.state == 'purchase':
-                if rec.picking_ids:
-                    for items in rec.picking_ids:
-                        if items.state != 'done':
-                            rec.delivery_status = 'pending'
-                        if items.state == 'cancel':
-                            rec.delivery_status = 'cancel'
-                        else:
-                            rec.delivery_status = 'received'
-            else:
-                rec.delivery_status = 'nothing'
+    # @api.depends('state')
+    # def get_delivery_status(self):
+    #     for rec in self:
+    #         if rec.state == 'purchase':
+    #             if rec.picking_ids:
+    #                 for items in rec.picking_ids:
+    #                     if items.state != 'done':
+    #                         rec.delivery_status = 'pending'
+    #                     if items.state == 'cancel':
+    #                         rec.delivery_status = 'cancel'
+    #                     else:
+    #                         rec.delivery_status = 'received'
+    #         else:
+    #             rec.delivery_status = 'nothing'
 
 
