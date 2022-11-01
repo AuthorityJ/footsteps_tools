@@ -11,10 +11,11 @@ class PurchaseOrder(models.Model):
         ('cancel', 'Receipt Cancelled'),
     ], default='nothing', string="Delivery/Receipt Status")
 
-    # @api.depends('state')
-    # def get_delivery_status(self):
-    #     for rec in self:
-    #         if rec.state == 'purchase':
+    @api.depends('state')
+    def get_delivery_status(self):
+        for rec in self:
+            if rec.state == 'purchase':
+                rec.delivery_status = 'nothing'
     #             if rec.picking_ids:
     #                 for items in rec.picking_ids:
     #                     if items.state != 'done':
