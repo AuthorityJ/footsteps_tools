@@ -22,4 +22,16 @@
           </field>
       </field>
     </record>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="footsteps_purchase_order_delivery_list2">
+      <field name="name">footsteps.purchase.delivery</field>
+      <field name="model">purchase.order</field>
+      <field name="inherit_id" ref="purchase.purchase_order_view_tree"/>
+      <field name="arch" type="xml">
+          <field name="state" position="after">
+            <field name="delivery_status" optional="show" widget="badge" decoration-success="delivery_status == 'received'" decoration-warning="delivery_status == 'pending'" decoration-info="delivery_status == 'nothing'"/>
+          </field>
+      </field>
+    </record>
 </odoo>
